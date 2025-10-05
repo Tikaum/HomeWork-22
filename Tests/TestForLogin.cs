@@ -13,7 +13,7 @@ namespace Homework_22.Tests
         LoginPage loginPage = new LoginPage();
         ProductsPage productsPage = new ProductsPage();
 
-        [TestCaseSource(typeof(CsvData), nameof(CsvData.GetTestCases))]
+        [TestCaseSource(typeof(CsvDataOfLogins), nameof(CsvDataOfLogins.GetTestCases))]
         public void TestFromCSV(string login, string password, string expected)
         {
             bool expectedResult = Convert.ToBoolean(expected);            

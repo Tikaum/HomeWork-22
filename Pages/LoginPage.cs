@@ -25,8 +25,6 @@ namespace Homework_22.Pages
             driver.FindElement(PasswordField).Click();
             driver.FindElement(PasswordField).SendKeys(password);
             driver.FindElement(LoginButtonField).Click();
-        }
-
-       
+        }       
     }
 }

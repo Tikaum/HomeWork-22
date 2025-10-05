@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Homework_22.Utils
 {
-    public class CsvData
+    public class CsvDataOfLogins
     {
         public static IEnumerable<TestCaseData> GetTestCases()
         {
