@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace Homework_22.Tests
 {
-    public class TestForLogin
+    public class TestForLogin:BaseTest
     {
         LoginPage loginPage = new LoginPage();
+        ProductsPage productsPage = new ProductsPage();
 
         [TestCaseSource(typeof(CsvData), nameof(CsvData.GetTestCases))]
         public void TestFromCSV(string login, string password, string expected)
         {
-            loginPage.LoginUser(login, password);
+            bool expectedResult = Convert.ToBoolean(expected);            
+            loginPage.LoginUser(login, password);            
+            bool IsProductsPageOpen = productsPage.IsProductLabelExist();
+            Assert.That(IsProductsPageOpen, Is.EqualTo(expectedResult),
+                "The result obtained does not match the expected one.");                
         }
     }
 }

@@ -11,8 +11,7 @@ namespace Homework_22.Pages
     {
         private readonly By UserNameField = By.Id("user-name");
         private readonly By PasswordField = By.Id("password");
-        private readonly By LoginButtonField = By.Id("login-button");
-        private readonly By ErrorButton = By.XPath("//h3[@data-test='error' and contains(text(),'Epic sadface:')]");
+        private readonly By LoginButtonField = By.Id("login-button");        
 
         public void OpenStartPage()
         {
@@ -28,10 +27,6 @@ namespace Homework_22.Pages
             driver.FindElement(LoginButtonField).Click();
         }
 
-        public string GetErrorText()
-        {
-            string errorText = driver.FindElement(ErrorButton).Text;
-            return errorText;
-        }        
+       
     }
 }

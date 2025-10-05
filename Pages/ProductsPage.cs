@@ -11,12 +11,17 @@ namespace Homework_22.Pages
 {
     public class ProductsPage : BasePage
     {
-        private readonly By ProductLabel = By.XPath("//span[@class='title' and text() = 'Products']");
+        private readonly By ProductLabel = By.XPath("//span[@class='title' and text() = 'Products']");        
 
         public bool IsProductLabelExist()
         {
-            bool state = driver.FindElement(ProductLabel).Displayed;
-            return state;
+            int ElementsFind = driver.FindElements(ProductLabel).Count();
+            if (ElementsFind > 0)
+            {
+                bool IsElementFind = driver.FindElement(ProductLabel).Displayed;
+                return IsElementFind;
+            }
+            else { return false; }
         }
     }
 }
