@@ -18,7 +18,7 @@ namespace Homework_22.Pages
         private readonly By BadgeCartButtomBase = By.XPath("//div[@id='shopping_cart_container']/a[@data-test='shopping-cart-link']");                
         private readonly string ButtonAddToCartLocatorFormat = "//div[contains(text(),'{0}')]/ancestor::div[@class='inventory_item_description']//button[contains(@data-test,'add-to-cart')]";        
 
-        public bool IsProductLabelExist()
+        public bool IsProductsPageLabelExist()
         {
             int ElementsFind = driver.FindElements(ProductLabel).Count();
             if (ElementsFind > 0)

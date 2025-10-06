@@ -18,7 +18,7 @@ namespace Homework_22.Tests
         {
             bool expectedResult = Convert.ToBoolean(expected);            
             loginPage.LoginUser(login, password);            
-            bool IsProductsPageOpen = productsPage.IsProductLabelExist();
+            bool IsProductsPageOpen = productsPage.IsProductsPageLabelExist();
             Assert.That(IsProductsPageOpen, Is.EqualTo(expectedResult),
                 "The result obtained does not match the expected one.");                
         }
