@@ -5,6 +5,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using Allure.NUnit.Attributes;
+using Allure.NUnit;
+
 
 namespace Homework_22.Tests
 {
