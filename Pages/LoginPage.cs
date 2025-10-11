@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,9 @@ namespace Homework_22.Pages
         public void OpenStartPage()
         {
             driver.Navigate().GoToUrl("https://www.saucedemo.com");
-        }              
+        }
 
+        [AllureStep("Ввод логина {0} и пароля {1}")]
         public void LoginUser(string username, string password)
         {
             driver.FindElement(UserNameField).Click();

@@ -1,17 +1,12 @@
 ﻿using Homework_22.Pages;
 using Homework_22.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using NUnit.Framework;
 using Allure.NUnit.Attributes;
 using Allure.NUnit;
-
+using Allure.Net.Commons;
 
 namespace Homework_22.Tests
 {
+    [AllureNUnit]
     public class TestForItems : BaseTest
     {
         LoginPage loginPage = new LoginPage();
@@ -19,6 +14,10 @@ namespace Homework_22.Tests
         CartPage cartPage = new CartPage();
 
         [TestCaseSource(typeof(CsvDataOfItems), nameof(CsvDataOfItems.GetTestCases))]
+        [AllureTag("smoke")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("TimKay")]
+        [AllureSuite("Add_and_remove_item_with_name_in_cart")]
         public void TestFromCSV(string name, string price)
         {
             loginPage.LoginUser("standard_user", "secret_sauce");

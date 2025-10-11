@@ -1,22 +1,29 @@
-﻿using Homework_22.Pages;
+﻿using Allure.Net.Commons;
+using Allure.NUnit;
+using Allure.NUnit.Attributes;
+using Allure.NUnit.Internals;
+using Homework_22.Pages;
 using Homework_22.Utils;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
-using Allure.NUnit.Attributes;
-using Allure.NUnit;
 
 namespace Homework_22.Tests
 {
+    [AllureNUnit]
     public class TestForLogin:BaseTest
     {
         LoginPage loginPage = new LoginPage();
         ProductsPage productsPage = new ProductsPage();
 
         [TestCaseSource(typeof(CsvDataOfLogins), nameof(CsvDataOfLogins.GetTestCases))]
+        [AllureTag("extended")]
+        [AllureSeverity(SeverityLevel.blocker)]
+        [AllureOwner("TimKay")]
+        [AllureSuite("Enter_in_system_with_different_login")]
         public void TestFromCSV(string login, string password, string expected)
         {
             bool expectedResult = Convert.ToBoolean(expected);            
