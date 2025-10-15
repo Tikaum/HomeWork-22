@@ -1,10 +1,5 @@
-﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Allure.NUnit.Attributes;
+using OpenQA.Selenium;
 
 namespace Homework_22.Pages
 {
@@ -17,29 +12,34 @@ namespace Homework_22.Pages
         private readonly By BadgeOfBasket = By.XPath("//div[@id='shopping_cart_container']/a[@data-test='shopping-cart-link']");
         private readonly By ButtonForBackToProductPage = By.XPath("//button[@data-test = 'continue-shopping']");
 
+        [AllureStep("Проверка перехода на страницу корзины")]
         public bool IsCartLabelExist()
         {
             bool state = driver.FindElement(CartLabel).Displayed;
             return state;
         }
 
+        [AllureStep("Получение названия товара находящегося в корзине")]
         public string GetNameOfItem()
         {
             string NameOfItem = driver.FindElement(ItemName).Text;
             return NameOfItem;
         }
 
+        [AllureStep("Получение стоимости товара находящегося в корзине")]
         public string GetPriceOfItem()
         {
             string PriceOfItem = driver.FindElement(PriceElement).Text.Replace("$", "");            
             return PriceOfItem;
         }
 
+        [AllureStep("Очистка корзины (однократная)")]
         public void RemoveItemsFromCart()
         {
             driver.FindElement(ButtonForRemoveAnyItem).Click();
         }
 
+        [AllureStep("Очистка корзины (полная)")]
         public void RemoveAllItemsFromCart()
         {
             string GetCountOfItemsInCart = driver.FindElement(BadgeOfBasket).Text;
@@ -54,12 +54,14 @@ namespace Homework_22.Pages
             }             
         }
 
+        [AllureStep("Получение количества товаров в корзине")]
         public string GetCountOfItemsInCart()
         {
             string GetCountOfItemsInCart = driver.FindElement(BadgeOfBasket).Text;
             return GetCountOfItemsInCart;
         }
 
+        [AllureStep("Возврат на страницу продуктов")]
         public void BackToProductPage()
         {
             driver.FindElement(ButtonForBackToProductPage).Click();

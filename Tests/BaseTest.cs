@@ -1,16 +1,14 @@
-﻿using Homework_22.Pages;
+﻿using Allure.Net.Commons;
+using Homework_22.Pages;
 using Homework_22.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework.Interfaces;
 
 namespace Homework_22.Tests
 {
     public class BaseTest
     {
         LoginPage loginPage = new LoginPage();
+        ScreenshotUtils screenshotUtils = new ScreenshotUtils();
 
         [SetUp]
         public void Setup()
@@ -21,6 +19,19 @@ namespace Homework_22.Tests
         [TearDown]
         public void Teardown()
         {
+            var context = TestContext.CurrentContext;
+            if (context.Result.Outcome.Status == TestStatus.Failed)
+            {
+                AllureLifecycle.Instance.UpdateTestCase(x =>
+                {
+                    x.attachments.Add(new Attachment
+                    {
+                        name = "Failure Screenshot",
+                        type = "image/png",
+                        source = screenshotUtils.SaveScreenshotAndReturnFileName()
+                    });
+                });
+            }
             DriverManager.Quit();
         }
     }

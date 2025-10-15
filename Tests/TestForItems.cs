@@ -1,13 +1,12 @@
 ﻿using Homework_22.Pages;
 using Homework_22.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Allure.NUnit.Attributes;
+using Allure.NUnit;
+using Allure.Net.Commons;
 
 namespace Homework_22.Tests
 {
+    [AllureNUnit]
     public class TestForItems : BaseTest
     {
         LoginPage loginPage = new LoginPage();
@@ -15,6 +14,10 @@ namespace Homework_22.Tests
         CartPage cartPage = new CartPage();
 
         [TestCaseSource(typeof(CsvDataOfItems), nameof(CsvDataOfItems.GetTestCases))]
+        [AllureTag("smoke")]
+        [AllureSeverity(SeverityLevel.critical)]
+        [AllureOwner("TimKay")]
+        [AllureSuite("Add_and_remove_item_with_name_in_cart")]
         public void TestFromCSV(string name, string price)
         {
             loginPage.LoginUser("standard_user", "secret_sauce");
@@ -28,18 +31,14 @@ namespace Homework_22.Tests
             Assert.That(ItemCount, Is.EqualTo("1"), "There is an incorrect quantity of products in the basket.");
             productsPage.GoToCart();
             bool IsCartPageOpen = cartPage.IsCartLabelExist();
+            Assert.That(IsCartPageOpen, Is.True, "The cart page did not open.");
             string NameOfItem = cartPage.GetNameOfItem();
+            Assert.That(NameOfItem, Is.EqualTo(name), "The product name in the cart does not match the expected one.");
             string PriceOfItem = cartPage.GetPriceOfItem();
+            Assert.That(PriceOfItem, Is.EqualTo(price), "The price of the product in the cart does not match the expected price.");
             cartPage.RemoveItemsFromCart();
             string CountOfItemsInCart = cartPage.GetCountOfItemsInCart();
-            Assert.Multiple(() =>
-            {
-                Assert.That(IsCartPageOpen, Is.True, "The cart page did not open.");
-                Assert.That(NameOfItem, Is.EqualTo(name), "The product name in the cart does not match the expected one.");
-                Assert.That(PriceOfItem, Is.EqualTo(price), "The price of the product in the cart does not match the expected price.");
-                Assert.That(CountOfItemsInCart, Is.EqualTo(""), "The item was not removed from the cart");
-            });
-            
+            Assert.That(CountOfItemsInCart, Is.EqualTo(""), "The item was not removed from the cart");                     
         }
     }
 }
