@@ -1,15 +1,8 @@
 ﻿using Allure.Net.Commons;
 using Allure.NUnit;
 using Allure.NUnit.Attributes;
-using Allure.NUnit.Internals;
 using Homework_22.Pages;
 using Homework_22.Utils;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Homework_22.Tests
 {

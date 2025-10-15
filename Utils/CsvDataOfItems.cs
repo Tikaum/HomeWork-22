@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Homework_22.Utils
+﻿namespace Homework_22.Utils
 {
     public class CsvDataOfItems
     {
